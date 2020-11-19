@@ -1,0 +1,205 @@
+<div *ngIf="isValid==true;then ifTemplate ; else elseTemplate"></div>
+
+<ng-template #elseTemplate>
+   please login again!
+</ng-template>
+
+<ng-template #ifTemplate>
+  <div class="container">
+     <div><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+     Add Product!
+    </button>
+   
+   
+   <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title" id="exampleModalLabel">Update details</h5>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+enter new details with same ID
+</div>
+<div class="modal-footer">
+<form [formGroup]="addingItem" style="border: black solid 2px; margin-top:40px;">
+   <div class="container" id="updateForm" style="padding: 16px;">
+ 
+     <div class="container" style="margin:auto; padding-top: 10px;">
+      <label for="itemId"><b>ID</b></label>
+      <input type="text" placeholder="Enter same ID" name="itemId" formControlName="itemId"
+          id="itemId" style="width:100%;">
+   
+  </div>
+       <div class="container" style="margin:auto; padding-top: 10px;">
+           <label for="itemName"><b>New Name</b></label>
+           <input type="text" placeholder="Enter name" name="itemName" formControlName="itemName"
+               id="itemName" style="width:100%;">
+        
+       </div>
+
+       <div class="container" style="margin:auto; padding-top: 10px;">
+           <label for="itemCategory"><b>itemCategory</b></label>
+           <input type="text" placeholder="Enter category" name="itemCat"
+               formControlName="itemCategory" id="itemCat" style="width:100%;">
+          
+
+       </div>
+       <div class="container" style="margin:auto; padding-top: 10px;">
+         <label for="itemDescription"><b>item Description</b></label>
+         <input type="text" placeholder="Enter description" name="itemCat"
+             formControlName="itemDescription" id="itemDes" style="width:100%;">
+        
+
+     </div>
+
+
+
+   
+       
+   </div>
+   <div class="container" style="margin:auto; padding-top: 10px;">
+      <label for="itemPrice"><b>New price</b></label>
+      <input type="text" placeholder="Enter price" name="itemPrice" formControlName="itemPrice"
+          id="itemPrice" style="width:100%;">
+   
+  </div>
+  <div class="container" style="margin:auto; padding-top: 10px;">
+   <label for="itemImageName"><b>image url</b></label>
+   <input type="text" placeholder="Enter URL" name="itemImageName" formControlName="itemImageName"
+       id="itemImageName" style="width:100%;">
+
+</div>
+ 
+  
+
+
+</form>
+<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+<button type="button" class="btn btn-primary " (click)="addProduct();">Save changes</button>
+</div>
+</div>
+</div>
+</div>
+   </div>
+   <table class="table">
+      <thead>
+          <th>ID</th>
+          <th>Name</th>
+          <th>category</th>
+          <th>description</th>
+          <th>price</th>
+          <th>image</th>
+          <th></th>
+          <th></th>
+      </thead>
+      <tbody>
+          <tr *ngFor="let data of temp">
+              <td id='id'>{{data.itemId}}</td>
+              <td>{{data.itemName}}</td>
+              <td>{{data.itemCategory}}</td>
+              <td>{{data.itemDescription}}</td>
+              <td>{{data.itemPrice}}</td>
+              <td><img align="center" width="100px" height="100px" src={{data.itemImageName}} alt="Flowers in Chania"></td>
+              <td> <input type="button" value="Delete Product" 
+               (click)="deleteProduct(data.itemId)"/></td>
+              <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+               update
+             </button>
+            
+            
+            <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+         </button>
+       </div>
+       <div class="modal-body">
+         ...
+       </div>
+       <div class="modal-footer">
+         <form [formGroup]="updateItem" style="border: black solid 2px; margin-top:40px;">
+            <div class="container" id="updateForm" style="padding: 16px;">
+               <!-- <div class="container" style="margin:auto; padding-top: 10px;">
+                  <label for="itemId"><b>Id</b></label>
+                  <input type="text" value={{data.itemId}} disabled placeholder="Enter name" name="itemId" formControlName="itemId"
+                      id="itemId" style="width:100%;">
+               
+              </div> -->
+              <div class="container" style="margin:auto; padding-top: 10px;">
+               <label for="itemId"><b>ID</b></label>
+               <input type="text" placeholder="Enter same ID" name="itemId" formControlName="itemId"
+                   id="itemId" style="width:100%;">
+            
+           </div>
+                <div class="container" style="margin:auto; padding-top: 10px;">
+                    <label for="itemName"><b>New Name</b></label>
+                    <input type="text" placeholder="Enter name" name="itemName" formControlName="itemName"
+                        id="itemName" style="width:100%;">
+                 
+                </div>
+
+                <div class="container" style="margin:auto; padding-top: 10px;">
+                    <label for="itemCategory"><b>itemCategory</b></label>
+                    <input type="text" placeholder="Enter category" name="itemCat"
+                        formControlName="itemCategory" id="itemCat" style="width:100%;">
+                   
+         
+                </div>
+                <div class="container" style="margin:auto; padding-top: 10px;">
+                  <label for="itemDescription"><b>item Description</b></label>
+                  <input type="text" placeholder="Enter description" name="itemCat"
+                      formControlName="itemDescription" id="itemDes" style="width:100%;">
+                 
+       
+              </div>
+              <!-- <div class="container" style="margin:auto; padding-top: 10px;">
+               <input
+  style="display: none" formControlName="itemImageName"
+  type="file" (change)="onFileChanged($event)"
+  #fileInput>
+<button (click)="fileInput.click()">Select File</button>
+<button (click)="onUpload()">Upload!</button>
+              
+    
+           </div> -->
+
+
+
+            
+                
+            </div>
+            <div class="container" style="margin:auto; padding-top: 10px;">
+               <label for="itemPrice"><b>New price</b></label>
+               <input type="text" placeholder="Enter price" name="itemPrice" formControlName="itemPrice"
+                   id="itemPrice" style="width:100%;">
+            
+           </div>
+          
+           
+      
+         
+        </form>
+         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+         <button type="button" class="btn btn-primary " (click)="updateProduct();">Save changes</button>
+       </div>
+     </div>
+   </div>
+ </div>
+            
+            
+            
+            
+            </td>
+          </tr>
+      </tbody>
+  </table>
+  </div>
+</ng-template>

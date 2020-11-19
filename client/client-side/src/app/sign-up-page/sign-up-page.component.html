@@ -1,0 +1,145 @@
+<div class="container-fluid">
+    <header>
+        <div class="row align-self-center">
+            <div class="col align-self-center" style="text-align:center;">
+                <h1 style="font-family:Sofia; font-style:italic;"><b>Welcome to Fashionista</b></h1>
+            </div>
+        </div>
+        <div class="row bg bg-dark">
+            <div class="col">
+                <nav class="navbar navbar-expand-md dark navbar-dark">
+                    <a class="navbar-brand" routerLink="/home">Fs</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleMenu">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="collapsibleMenu">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " routerLink="/login" routerLinkActive="active">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" routerLink="/signup" routerLinkActive="active">Sign Up</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <ul class="nav justify-content-end">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"
+                                    style="margin-top:6px; font-weight: 450;">
+                                    Guest
+                                </a>
+                                <div class="dropdown-menu bg bg-dark">
+                                    <a class="dropdown-item" routerLink="/login" routerLinkActive="active">Login</a>
+                                    <a class="dropdown-item" routerLink="/signup" routerLinkActive="active">Sign Up</a>
+                                    <a class="dropdown-item" routerLink="/viewCart" routerLinkActive="active">See
+                                        Cart</a>
+                                    <a class="dropdown-item" routerLink="/logout" routerLinkActive="active">Logout</a>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" routerLink="/viewCart" style="margin-bottom:6px;">
+                                    <span class="fa-stack">
+                                        <i class="fa fa-shopping-cart fa-stack-2x" style="top:8px;"></i>
+                                        <span class="fa fa-stack-1x"
+                                            style="font-weight:800; color:white; bottom:10px; left:5px;">{{currentCartCount}}</span>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="row">
+        <div class="col-2" style="background-color: #eee; min-height: 500px;">
+            <h5 style="text-align:center;">Browse by categories</h5>
+            <div class="vertical-menu">
+                <a routerLink="/men">Men</a>
+                <a routerLink="/women">Women</a>
+                <a routerLink="/chidlren">Children</a>
+                <a routerLink="/electronics">Electronics</a>
+                <a routerLink="/sports">Sports</a>
+            </div>
+        </div>
+        <div class="col-6 offset-2" style="min-height: 500px;">
+            <div class="row">
+                <div class="col-10 offset-1" style=" background-color: lavender; min-height: 500px;">
+                    <div style="margin-top:10px; padding-top:10px;">
+                        <h3 style="text-align: center; color:black">Sign Up</h3>
+                    </div>
+                    <form [formGroup]="signupForm" style="border: black solid 2px; margin-top:40px;">
+                        <div class="container" id="signupForm" style="padding: 16px;">
+
+                            <div class="container" style="margin:auto; padding-top: 10px;">
+                                <label for="name"><b>Name</b></label>
+                                <input type="text" placeholder="Enter Full Name" name="name" formControlName="name"
+                                    id="txtuName" style="width:100%;">
+                                <div *ngIf="signupForm.get('name').hasError('required') && !signupForm.get('name').pristine"
+                                    style="color: red;">
+                                    Name is required
+                                </div>
+                            </div>
+
+                            <div class="container" style="margin:auto; padding-top: 10px;">
+                                <label for="uname"><b>Username</b></label>
+                                <input type="text" placeholder="Enter Username" name="uname" formControlName="userName"
+                                    id="txtuserName" style="width:100%;">
+                                <div *ngIf="signupForm.get('userName').hasError('required') && !signupForm.get('userName').pristine"
+                                    style="color: red;">
+                                    Username is required
+                                </div>
+                            </div>
+
+                            <div class="container" style="margin:auto; padding-top: 10px;">
+                                <label for="uemail"><b>Email</b></label>
+                                <input type="text" placeholder="Enter Email" name="uemail" formControlName="email"
+                                    id="txtuserEmail" style="width:100%;">
+                                <div
+                                    *ngIf="signupForm.get('email').errors?.email && (!signupForm.get('email').pristine|| signupForm.get('email').touched)" style="color: red;">
+                                    Email is in not proper format
+                                </div>
+                                <div
+                                    *ngIf="signupForm.get('email').errors?.required && (!signupForm.get('email').pristine)" style="color: red;">
+                                    Email is required
+                                </div>
+                            </div>
+
+                            <div class="container" style="margin:auto; padding-top: 10px;">
+                                <label for="psw"><b>Password</b></label>
+                                <input type="password" placeholder="Enter Password" name="psw"
+                                    formControlName="password" id="txtuserPassword" style="width:100%;">
+                                <div *ngIf="signupForm.get('password').errors?.required && (!signupForm.get('password').pristine)"
+                                    style="color: red;">
+                                    Password is required
+                                </div>
+                                <div *ngIf="signupForm.get('password').errors?.minlength && (!signupForm.get('password').pristine || signupForm.get('password').touched)"
+                                    style="color: red;">
+                                    Minimum password length is 8
+                                </div>
+                            </div>
+
+                            <div class="container" style="margin:auto; padding-top: 10px;">
+                                <label>
+                                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                                </label>
+                            </div>
+                            <div class="container"
+                                style="margin:auto; padding-top: 10px; padding-bottom: 10px; text-align: center;">
+                                <button type="button" id="signUpButton" (click)="signUpEventHandler()"
+                                    [disabled]="!signupForm.valid" style="color:white; background-color: green;">Sign
+                                    Up</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

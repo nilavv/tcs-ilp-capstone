@@ -1,0 +1,180 @@
+<div class="container-fluid">
+    <header>
+        <div class="row align-self-center">
+            <div class="col align-self-center" style="text-align:center;">
+                <h1 style="font-family:Sofia; font-style:italic;"><b>Welcome to Fashionista</b></h1>
+            </div>
+        </div>
+        <div class="row bg bg-dark">
+            <div class="col"id="leftMenu" >
+                <nav class="navbar navbar-expand-md dark navbar-dark">
+                    <a class="navbar-brand" routerLink="/home">Fs</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleMenu">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="collapsibleMenu">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " routerLink="/login" routerLinkActive="active">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" routerLink="/signup" routerLinkActive="active">Sign Up</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div *ngIf="loggedin==false; then ifTemplate; else elseTemplate"></div>
+                    <ng-template #elseTemplate>
+                        <div >
+                            <ul class="nav justify-content-end">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"
+                                        style="margin-top:6px; font-weight: 450;">
+                                        {{currentUsername}}
+                                    </a>
+                                    <div class="dropdown-menu bg bg-dark">
+                                        <a class="dropdown-item" routerLink="/login" routerLinkActive="active">View
+                                            Order</a>
+                                        <a class="dropdown-item" routerLink="/signup"
+                                            routerLinkActive="active">Checkout</a>
+                                        <a class="dropdown-item" routerLink="/viewCart" routerLinkActive="active">See
+                                            Cart</a>
+                                        <a class="dropdown-item" routerLink="/logout"
+                                            routerLinkActive="active">Logout</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" routerLink="/viewCart" style="margin-bottom:6px;">
+                                        <span class="fa-stack">
+                                            <i class="fa fa-shopping-cart fa-stack-2x" style="top:8px;"></i>
+                                            <span class="fa fa-stack-1x"
+                                                style="font-weight:800; color:white; bottom:10px; left:5px;">{{currentCartCount}}</span>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </ng-template>
+                    <ng-template #ifTemplate>
+                        <div>
+                            <ul class="nav justify-content-end">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"
+                                        style="margin-top:6px; font-weight: 450;">
+                                        {{currentUsername}}
+                                    </a>
+                                    <div class="dropdown-menu bg bg-dark">
+                                        <a class="dropdown-item" routerLink="/login" routerLinkActive="active">Login</a>
+                                        <a class="dropdown-item" routerLink="/signup" routerLinkActive="active">Sign
+                                            Up</a>
+                                        <a class="dropdown-item" routerLink="/viewCart" routerLinkActive="active">See
+                                            Cart</a>
+                                        <a class="dropdown-item" routerLink="/logout"
+                                            routerLinkActive="active">Logout</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" routerLink="/viewCart" style="margin-bottom:6px;">
+                                        <span class="fa-stack">
+                                            <i class="fa fa-shopping-cart fa-stack-2x" style="top:8px;"></i>
+                                            <span class="fa fa-stack-1x"
+                                                style="font-weight:800; color:white; bottom:10px; left:5px;">{{currentCartCount}}</span>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </ng-template>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div class="row">
+        <div class="col-75">
+          <div class="container">
+            <form [formGroup]="paymentForm">
+            
+              <div class="row">
+                <div class="col-50">
+                  <h3>Billing Address</h3>
+                  <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+                  <input type="text" id="fname" name="firstname" placeholder="Enter your name" formControlName="name">
+                  <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                  <input type="text" id="email" name="email" placeholder="Enter your email" formControlName="email">
+                  <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+                  <input type="text" id="adr" name="address" placeholder="Enter your address" formControlName="address">
+                  <label for="city"><i class="fa fa-institution"></i> City</label>
+                  <input type="text" id="city" name="city" placeholder="Enter city" formControlName="city">
+      
+                  <div class="row">
+                    <div class="col-50">
+                      <label for="state">State</label>
+                      <input type="text" id="state" name="state" placeholder="State" formControlName="state">
+                    </div>
+                    <div class="col-50">
+                      <label for="zip">Zip</label>
+                      <input type="text" id="zip" name="zip" placeholder="ZIP" formControlName="zip">
+                    </div>
+                  </div>
+                </div>
+      
+                <div class="col-50">
+                  <h3>Payment</h3>
+                  <label for="fname">Accepted Cards</label>
+                  <div class="icon-container">
+                    <i class="fa fa-cc-visa" style="color:navy;"></i>
+                    <i class="fa fa-cc-amex" style="color:blue;"></i>
+                    <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                    <i class="fa fa-cc-discover" style="color:orange;"></i>
+                  </div>
+                  <label for="cname">Name on Card</label>
+                  <input type="text" id="cname" name="cardname" formControlName="nameOnCard">
+                  <label for="ccnum">Credit card number</label>
+                  <input type="text" id="ccnum" name="cardnumber" formControlName="creditCardNumber">
+                  <label for="expmonth">Exp Month</label>
+                  <input type="text" id="expmonth" name="expmonth" formControlName="expiryMonth">
+                  <div class="row">
+                    <div class="col-50">
+                      <label for="expyear">Exp Year</label>
+                      <input type="text" id="expyear" name="expyear" formControlName="expiryYear">
+                    </div>
+                    <div class="col-50">
+                      <label for="cvv">CVV</label>
+                      <input type="text" id="cvv" name="cvv" formControlName="cvv" >
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+              <label>
+                <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+              </label>
+              <input type="button" value="Pay" class="btn" (click)="paymentEventHandler()">
+            </form>
+          </div>
+        </div>
+        <div class="col-25">
+          <div class="container">
+            <h4 style="text-align:center;">Cart <span class="price" style="color:black"></span></h4>
+            <div *ngFor="let carditem of cardArr">
+            <div class="row">
+                <div class="col-9" style="text-align: left;">
+                    {{carditem.itemName}}
+                </div>
+                <div class="col-3" style="text-align: right;">
+                    {{carditem.itemTotalCost}}
+                </div>
+            </div>         
+            
+            </div>
+            <hr>
+            <p>Total <span class="price" style="color:black"><i class="fa fa-inr"
+                aria-hidden="true"><b>{{totalSum}}</b></i></span></p>
+          </div>
+        </div>
+      </div>
+      
+    
+</div>
